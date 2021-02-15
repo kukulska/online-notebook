@@ -8,14 +8,41 @@
     <title>My sketchbook</title>
   </head>
   <body>
-    <h1>SKETCH HERE</h1>
-    <canvas id="canvas"></canvas>
+    <div class="side-bar" id="side-bar">
+      <div class="menu-icon" id="menu-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <div class="list-container" id="list-container">
+      <form id="form">
+        <div class="form-control">
+          <label for="text">TODAY I SHOULD WORK ON:</label>
+          <div class="new-task">
+            <input type="text" id="text" placeholder="Enter a task..." />
+            <button type="submit" class="submit-btn" id="sumbit-btn">+</button>
+          </div>
+        </div>
+      </form>
+      <ul class="list" id="list"></ul>
+    </div>
 
-    <div class="pen-color">
-      <a href="#" style="background-color: #df1c5f"></a>
-      <a href="#" style="background-color: #ff5722"></a>
-      <a href="#" style="background-color: #303f9f"></a>
-      <a href="#" style="background-color: #ffeb3b"></a>
+    <div class="main" id="main">
+      <h1 id="h1">SKETCH HERE</h1>
+
+      <canvas id="canvas"></canvas>
+
+      <div class="clear-canvas" id="clear-canvas">
+        <img src="./img/clear.png" alt="clera-icon" id="clear-img" />
+      </div>
+
+      <div class="pen-color">
+        <a href="#" style="background-color: #000000"></a>
+        <a href="#" style="background-color: #df1c5f"></a>
+        <a href="#" style="background-color: #ff5722"></a>
+        <a href="#" style="background-color: #303f9f"></a>
+        <a href="#" style="background-color: #ffeb3b"></a>
+      </div>
     </div>
 
     <script src="./src/script.js"></script>
