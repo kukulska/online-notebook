@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/454486baaa.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./src/style.css" />
     <title>My sketchbook</title>
   </head>
   <body>
-    <div class="side-bar" id="side-bar">
+    <div class="side-bar-fixed">
       <div class="menu-icon" id="menu-icon">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -17,10 +21,12 @@
     <div class="list-container" id="list-container">
       <form id="form">
         <div class="form-control">
-          <label for="text">TODAY I SHOULD WORK ON:</label>
+          <label for="text">TO DO LIST</label>
           <div class="new-task">
             <input type="text" id="text" placeholder="Enter a task..." />
-            <button type="submit" class="submit-btn" id="sumbit-btn">+</button>
+            <button type="submit" class="submit-btn" id="sumbit-btn">
+              <i class="fas fa-plus"></i>
+            </button>
           </div>
         </div>
       </form>
@@ -33,7 +39,7 @@
       <canvas id="canvas"></canvas>
 
       <div class="clear-canvas" id="clear-canvas">
-        <img src="./img/clear.png" alt="clera-icon" id="clear-img" />
+        <i class="fas fa-times" id="clear-img"></i>
       </div>
 
       <div class="pen-color">

@@ -1,18 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap");
 
+:root {
+  --light-gray: #dbdbdb;
+  --darker-gray: #a9a9b5;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background-color: #fff;
+  color: #000000;
   margin: 0;
   font-family: "Pathway Gothic One", sans-serif;
   overflow: hidden;
   position: relative;
 }
 
-.side-bar {
+.side-bar-fixed {
   background-color: #fff;
   position: fixed;
   width: 60px;
@@ -21,30 +27,46 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid #dbdbdb;
+  border-right: 1px solid var(--light-gray);
   z-index: 3;
-  transition: transform 0.5s;
 }
 
-.side-bar .menu-icon {
+.side-bar-fixed .menu-icon {
   cursor: pointer;
 }
 
-.side-bar .menu-icon .bar {
+.side-bar-fixed .menu-icon .bar {
   display: inline-block;
-  background-color: #a9a9b5;
-  height: 25px;
-  width: 2px;
+  background-color: var(--darker-gray);
+  border-radius: 2px;
+  height: 30px;
+  width: 6px;
   padding: 0;
   margin: 2px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.side-bar-fixed .menu-icon .bar.close:first-of-type {
+  transform: translateX(6.5px) rotate(45deg);
+}
+
+.side-bar-fixed .menu-icon .bar.close:last-of-type {
+  transform: translateX(-6.5px) rotate(-45deg);
 }
 
 .list-container {
   background-color: #fff;
   position: fixed;
+  top: 0;
+  left: -450px;
   width: 450px;
   height: 100vh;
   z-index: 2;
+  transition: transform 0.5s;
+}
+
+.list-container.open {
+  transform: translate(450px, 0);
 }
 
 .form-control {
@@ -52,18 +74,24 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 40px 40px 0 100px;
+  align-items: center;
+  margin: 40px 40px 40px 100px;
+  width: 300px;
 }
 
 .form-control label {
   margin-bottom: 20px;
 }
 
+.form-contor .new-task {
+  display: flex;
+  flex-direction: row;
+}
+
 .form-control input {
   border: none;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid var(--light-gray);
   padding: 8px 12px;
-  margin-bottom: 20px;
   width: 250px;
   height: 30px;
   margin: 0 25px 0 0;
@@ -71,55 +99,53 @@ body {
 }
 
 .form-control button.submit-btn {
-  background-color: #dbdbdb;
-  border: 1px solid #dbdbdb;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  color: var(--darker-gray);
   cursor: pointer;
+  font-size: 20px;
   margin: 0;
-  font-size: 16px;
+  padding: 0;
 }
 
-.list-container ul div.task-container {
-  position: relative;
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list .task-container {
   font-size: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 40px 0 60px;
+  margin: 10px 40px 10px 100px;
   padding: 0;
+  width: 300px;
 }
 
-.list-container ul div.task-container p {
-  margin: 0;
+.list .task-container p {
+  margin: 0 25px 0 0;
   padding: 8px 12px;
   width: 250px;
 }
 
-.list-container ul div.task-container input {
-  position: absolute;
-  left: 72px;
-  top: 0;
-  appearance: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid #dbdbdb;
-  margin-left: 206px;
+.list .task-container div i {
+  color: var(--light-gray);
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
 }
 
-.list-container ul div.task-container input:checked {
-  background-color: #c8e7ff;
-  border: 1px solid #dbdbdb;
-  color: #df1c5f;
+.list .task-container div i:hover {
+  color: var(--darker-gray);
 }
 
 h1 {
   background-color: none;
-  color: #a9a9b5;
+  color: var(--darker-gray);
   position: absolute;
   left: 50%;
   top: 10%;
@@ -139,22 +165,21 @@ canvas {
   height: 100vh;
 }
 
-div.clear-canvas img {
+div.clear-canvas i {
   background-color: transparent;
-  bottom: 100px;
+  color: var(--darker-gray);
+  font-size: 34px;
   position: absolute;
   left: 50%;
-  top: 10%;
+  top: 10.5%;
   transform: translateX(-50%);
-  height: 40px;
-  width: 40px;
   opacity: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
-div.clear-canvas img.add-clear {
+div.clear-canvas i.clear {
   opacity: 1;
-  cursor: pointer;
 }
 
 div.pen-color {

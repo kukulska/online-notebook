@@ -2,8 +2,9 @@ const canvas = document.getElementById("canvas");
 const penColors = document.querySelectorAll("div.pen-color a");
 const h1 = document.getElementById("h1");
 const clear = document.getElementById("clear-img");
-const menu = document.getElementById("menu-icon");
-const sideBar = document.getElementById("side-bar");
+const menuIcon = document.getElementById("menu-icon");
+const sideBarHidden = document.getElementById("list-container");
+const bars = document.querySelectorAll(".bar");
 const form = document.getElementById("form");
 const list = document.getElementById("list");
 const text = document.getElementById("text");
@@ -24,7 +25,7 @@ canvas.addEventListener("mousedown", (event) => {
   context.moveTo(event.pageX, event.pageY);
   context.beginPath();
   h1.classList.add("remove-h1");
-  clear.classList.add("add-clear");
+  clear.classList.add("clear");
 });
 
 canvas.addEventListener("mouseup", () => {
@@ -41,7 +42,7 @@ canvas.addEventListener("mousemove", (event) => {
 clear.addEventListener("click", () => {
   context.clearRect(0, 0, canvas.width, canvas.height);
   h1.classList.remove("remove-h1");
-  clear.classList.remove("add-clear");
+  clear.classList.remove("clear");
 });
 
 penColors.forEach((color) => {
@@ -50,8 +51,18 @@ penColors.forEach((color) => {
   });
 });
 
-menu.addEventListener("click", () => {
-  sideBar.classList.toggle("open");
+menuIcon.addEventListener("click", () => {
+  sideBarHidden.classList.toggle("open");
+
+  if (sideBarHidden.classList.contains("open")) {
+    bars.forEach((bar) => {
+      bar.classList.add("close");
+    });
+  } else {
+    bars.forEach((bar) => {
+      bar.classList.remove("close");
+    });
+  }
 });
 
 //To do list
@@ -84,8 +95,8 @@ function addTaskDOM(task) {
 
   item.innerHTML = `
   <div class="task-container">
-  <p>${task.text}<p>
-  <input type="checkbox" id="checkbox" onclick="removeTask(${task.id})">
+  <p>${task.text}</p>
+  <div onclick="removeTask(${task.id})"><i class="fas fa-check"></i></div>
   </div>
   `;
 
