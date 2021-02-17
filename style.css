@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap");
 
 :root {
+  --very-light-gray: #f8f8f8;
   --light-gray: #dbdbdb;
   --darker-gray: #a9a9b5;
 }
@@ -55,7 +56,7 @@ body {
 }
 
 .list-container {
-  background-color: #fff;
+  background-color: var(--very-light-gray);
   position: fixed;
   top: 0;
   left: -450px;
@@ -89,6 +90,7 @@ body {
 }
 
 .form-control input {
+  background-color: var(--very-light-gray);
   border: none;
   border-bottom: 1px solid var(--light-gray);
   padding: 8px 12px;
@@ -99,7 +101,7 @@ body {
 }
 
 .form-control button.submit-btn {
-  background-color: #fff;
+  background-color: var(--very-light-gray);
   border: none;
   color: var(--darker-gray);
   cursor: pointer;
@@ -160,9 +162,10 @@ h1.remove-h1 {
 }
 
 canvas {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #fff;
   width: 100vw;
   height: 100vh;
+  cursor: url("./img/pencil.png") 6 50, auto;
 }
 
 div.clear-canvas i {
@@ -187,6 +190,11 @@ div.pen-color {
   bottom: 30px;
   right: 30px;
   z-index: 1;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 div.pen-color a {
@@ -195,4 +203,9 @@ div.pen-color a {
   width: 30px;
   border-radius: 50%;
   margin: 10px;
+  transition: transform 500ms ease-in-out;
+}
+
+div.pen-color a:hover {
+  transform: scale(1.3);
 }

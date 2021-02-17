@@ -9,6 +9,8 @@ const form = document.getElementById("form");
 const list = document.getElementById("list");
 const text = document.getElementById("text");
 
+//canvas
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -30,6 +32,7 @@ canvas.addEventListener("mousedown", (event) => {
 
 canvas.addEventListener("mouseup", () => {
   shouldPaint = false;
+  saveDrawing();
 });
 
 canvas.addEventListener("mousemove", (event) => {
@@ -39,17 +42,49 @@ canvas.addEventListener("mousemove", (event) => {
   }
 });
 
+//clear canvas
+
 clear.addEventListener("click", () => {
   context.clearRect(0, 0, canvas.width, canvas.height);
   h1.classList.remove("remove-h1");
   clear.classList.remove("clear");
+  localStorage.removeItem("canvasDrawing");
 });
+
+//store canvas in local storage
+
+function saveDrawing() {
+  localStorage.setItem("canvasDrawing", canvas.toDataURL());
+}
+
+let dataURL = localStorage.getItem("canvasDrawing");
+let drawing = new Image();
+
+drawing.src = dataURL;
+drawing.onload = function () {
+  context.drawImage(drawing, 0, 0);
+};
+
+function clearOnLoad() {
+  if (dataURL) {
+    h1.classList.add("remove-h1");
+    clear.classList.add("clear");
+  } else {
+    return;
+  }
+}
+
+clearOnLoad();
+
+//circles with pen colors
 
 penColors.forEach((color) => {
   color.addEventListener("click", function (event) {
     context.strokeStyle = this.style.backgroundColor;
   });
 });
+
+//Side bar open and close icon
 
 menuIcon.addEventListener("click", () => {
   sideBarHidden.classList.toggle("open");
@@ -65,7 +100,7 @@ menuIcon.addEventListener("click", () => {
   }
 });
 
-//To do list
+//to do list
 
 const localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
 
