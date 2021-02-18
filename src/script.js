@@ -22,7 +22,7 @@ context.lineCap = "round";
 
 let shouldPaint = false;
 
-canvas.addEventListener("mousedown", (event) => {
+canvas.addEventListener("pointerdown", (event) => {
   shouldPaint = true;
   context.moveTo(event.pageX, event.pageY);
   context.beginPath();
@@ -30,12 +30,12 @@ canvas.addEventListener("mousedown", (event) => {
   clear.classList.add("clear");
 });
 
-canvas.addEventListener("mouseup", () => {
+canvas.addEventListener("pointerup", () => {
   shouldPaint = false;
   saveDrawing();
 });
 
-canvas.addEventListener("mousemove", (event) => {
+canvas.addEventListener("pointermove", (event) => {
   if (shouldPaint) {
     context.lineTo(event.pageX, event.pageY);
     context.stroke();

@@ -48,11 +48,11 @@ body {
 }
 
 .side-bar-fixed .menu-icon .bar.close:first-of-type {
-  transform: translateX(6.5px) rotate(45deg);
+  transform: translateX(6.35px) rotate(45deg);
 }
 
 .side-bar-fixed .menu-icon .bar.close:last-of-type {
-  transform: translateX(-6.5px) rotate(-45deg);
+  transform: translateX(-6.35px) rotate(-45deg);
 }
 
 .list-container {
@@ -172,6 +172,7 @@ canvas {
   width: 100vw;
   height: 100vh;
   cursor: url("./img/pencil.png") 6 50, auto;
+  touch-action: none;
 }
 
 div.clear-canvas i {
