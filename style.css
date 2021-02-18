@@ -171,7 +171,7 @@ canvas {
   background-color: #fff;
   width: 100vw;
   height: 100vh;
-  cursor: url("./img/pencil.png") 6 50, auto;
+  cursor: url("./img/pencil.png") 5 37, auto;
   touch-action: none;
 }
 
