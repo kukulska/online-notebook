@@ -13,14 +13,15 @@
 body {
   background-color: #fff;
   color: #000000;
-  margin: 0;
   font-family: "Pathway Gothic One", sans-serif;
+  margin: 0;
   overflow: hidden;
   position: relative;
 }
 
 .side-bar-fixed {
   background-color: #fff;
+  border-right: 1px solid var(--light-gray);
   position: fixed;
   width: 60px;
   height: 100vh;
@@ -28,7 +29,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid var(--light-gray);
   z-index: 3;
 }
 
@@ -37,13 +37,13 @@ body {
 }
 
 .side-bar-fixed .menu-icon .bar {
-  display: inline-block;
   background-color: var(--darker-gray);
   border-radius: 2px;
+  display: inline-block;
   height: 30px;
   width: 6px;
-  padding: 0;
   margin: 2px;
+  padding: 0;
   transition: transform 0.4s ease-in-out;
 }
 
@@ -62,8 +62,8 @@ body {
   left: -450px;
   width: 450px;
   height: 100vh;
-  z-index: 2;
   transition: transform 0.5s;
+  z-index: 2;
 }
 
 .list-container.open {
@@ -76,8 +76,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 40px 40px 100px;
-  width: 300px;
+  margin: 40px 0 40px 60px;
+  width: calc(450px - 60px);
 }
 
 .form-control label {
@@ -87,17 +87,18 @@ body {
 .form-contor .new-task {
   display: flex;
   flex-direction: row;
+  width: 300px;
 }
 
 .form-control input {
   background-color: var(--very-light-gray);
   border: none;
   border-bottom: 1px solid var(--light-gray);
-  padding: 8px 12px;
+  font-size: 14px;
   width: 250px;
   height: 30px;
+  padding: 8px 12px;
   margin: 0 25px 0 0;
-  font-size: 14px;
 }
 
 .form-control button.submit-btn {
@@ -112,8 +113,13 @@ body {
 
 .list {
   list-style: none;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 10px 60px;
   padding: 0;
+  width: calc(450px - 60px);
 }
 
 .list .task-container {
@@ -122,9 +128,9 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 40px 10px 100px;
-  padding: 0;
   width: 300px;
+  margin: 10px 0 10px 0;
+  padding: 0;
 }
 
 .list .task-container p {
@@ -189,23 +195,65 @@ div.pen-color {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 1;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 div.pen-color a {
+  border-radius: 50%;
   display: inline-block;
   height: 30px;
   width: 30px;
-  border-radius: 50%;
   margin: 10px;
   transition: transform 500ms ease-in-out;
 }
 
 div.pen-color a:hover {
   transform: scale(1.3);
+}
+
+@media (max-width: 700px) {
+  div.pen-color {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 450px) {
+  .list-container {
+    left: -100%;
+    width: 100%;
+  }
+
+  .list-container.open {
+    transform: translate(100%, 0);
+  }
+
+  .form-control {
+    width: calc(100% - 60px);
+    margin: 40px 0 40px 40px;
+  }
+
+  .form-contor .new-task {
+    width: 200px;
+  }
+
+  .form-control input {
+    width: 150px;
+  }
+
+  .list {
+    width: calc(100% - 60px);
+    margin: 40px 0 40px 40px;
+  }
+
+  .list .task-container {
+    width: 200px;
+  }
+
+  .list .task-container p {
+    width: 150px;
+  }
 }
