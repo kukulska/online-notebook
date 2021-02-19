@@ -76,7 +76,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 40px 60px;
+  margin: 40px 0 20px 60px;
   width: calc(450px - 60px);
 }
 
@@ -120,6 +120,12 @@ body {
   margin: 10px 0 10px 60px;
   padding: 0;
   width: calc(450px - 60px);
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .list .task-container {
@@ -129,7 +135,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 300px;
-  margin: 10px 0 10px 0;
+  margin: 4px 0 4px 0;
   padding: 0;
 }
 
@@ -234,7 +240,7 @@ div.pen-color a:hover {
 
   .form-control {
     width: calc(100% - 60px);
-    margin: 40px 0 40px 40px;
+    margin: 40px 0 10px 40px;
   }
 
   .form-contor .new-task {
@@ -247,11 +253,12 @@ div.pen-color a:hover {
 
   .list {
     width: calc(100% - 60px);
-    margin: 40px 0 40px 40px;
+    margin: 10px 0 10px 40px;
   }
 
   .list .task-container {
     width: 200px;
+    margin: 0;
   }
 
   .list .task-container p {
