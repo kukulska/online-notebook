@@ -145,6 +145,13 @@ body {
   width: 250px;
 }
 
+.list .task-container p.done-task {
+  margin: 0 25px 0 0;
+  padding: 8px 12px;
+  width: 250px;
+  text-decoration: line-through;
+}
+
 .list .task-container div i {
   color: var(--light-gray);
   cursor: pointer;
@@ -155,6 +162,10 @@ body {
 
 .list .task-container div i:hover {
   color: var(--darker-gray);
+}
+
+.list .task-container div i.done-task {
+  font-size: 30px;
 }
 
 h1 {

@@ -86,7 +86,7 @@ penColors.forEach((color) => {
 
 //Side bar open and close icon
 
-menuIcon.addEventListener("click", () => {
+function toggleSideBar() {
   sideBarHidden.classList.toggle("open");
 
   if (sideBarHidden.classList.contains("open")) {
@@ -98,7 +98,27 @@ menuIcon.addEventListener("click", () => {
       bar.classList.remove("close");
     });
   }
-});
+
+  let sideBarOpen = false;
+
+  if (sideBarHidden.classList.contains("open")) {
+    sideBarOpen = true;
+  }
+
+  localStorage.setItem("barStatus", sideBarOpen);
+}
+
+function checkSideBarStatus() {
+  let sideBarStatus = window.localStorage.getItem("barStatus");
+
+  if (sideBarStatus === "true") {
+    toggleSideBar();
+  }
+}
+
+menuIcon.addEventListener("click", toggleSideBar);
+
+checkSideBarStatus();
 
 //to do list
 
@@ -115,6 +135,7 @@ function addNewTask(event) {
     const task = {
       id: generateID(),
       text: text.value,
+      done: false,
     };
 
     tasks.push(task);
@@ -126,16 +147,53 @@ function addNewTask(event) {
 }
 
 function addTaskDOM(task) {
-  const item = document.createElement("li");
+  let text = task.text;
+  let id = task.id;
+  let done = task.done;
 
-  item.innerHTML = `
-  <div class="task-container">
-  <p>${task.text}</p>
-  <div onclick="removeTask(${task.id})"><i class="fas fa-check"></i></div>
-  </div>
-  `;
+  const item = document.createElement("li");
+  item.id = id;
+
+  let container = document.createElement("div");
+  container.classList.add("task-container");
+  let iconDiv = document.createElement("div");
+  let icon = document.createElement("i");
+  icon.classList.add("fas");
+
+  if (done === false) {
+    container.innerHTML = `<p>${text}</p>`;
+    iconDiv.addEventListener("click", function () {
+      changeToDone(id);
+    });
+
+    icon.classList.add("fa-check");
+  } else {
+    container.innerHTML = `<p class="done-task">${text}</p>`;
+
+    iconDiv.addEventListener("click", function () {
+      removeTask(id);
+    });
+
+    icon.classList.add("fa-times");
+    icon.classList.add("done-task");
+  }
 
   list.appendChild(item);
+  item.appendChild(container);
+  container.appendChild(iconDiv);
+  iconDiv.appendChild(icon);
+}
+
+function changeToDone(id) {
+  tasks.forEach((task) => {
+    if (task.id === id) {
+      task.done = true;
+    }
+  });
+
+  updateLocalStorage();
+
+  init();
 }
 
 function removeTask(id) {
@@ -155,8 +213,13 @@ function updateLocalStorage() {
 }
 
 function init() {
+  // let notDone = tasks.filter((task) => task.done === false);
+  // let done = tasks.filter((task) => task.done === true);
+
   list.innerHTML = "";
   tasks.forEach(addTaskDOM);
+  //   notDone.forEach(addTaskDOM);
+  //   done.forEach(addTaskDOM);
 }
 
 init();
