@@ -122,6 +122,7 @@ body {
   width: calc(450px - 60px);
   max-height: 90vh;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrollbar::-webkit-scrollbar {
