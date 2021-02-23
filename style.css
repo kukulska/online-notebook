@@ -120,9 +120,10 @@ body {
   margin: 10px 0 10px 60px;
   padding: 0;
   width: calc(450px - 60px);
-  max-height: 90vh;
+  max-height: 75vh;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
 .scrollbar::-webkit-scrollbar {
